@@ -1,0 +1,7 @@
+<beans>
+    <bean id="MyService" class="at.fhv.spring.di.bestPractices.beans.MyService">
+        <property name="service">
+            <ref local="MyService"/>
+        </property>
+    </bean>
+</beans>
