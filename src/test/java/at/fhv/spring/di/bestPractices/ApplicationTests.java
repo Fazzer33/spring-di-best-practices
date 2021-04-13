@@ -3,11 +3,12 @@ package at.fhv.spring.di.bestPractices;
 import at.fhv.spring.di.bestPractices.autowired.controllers.ConstructorController;
 import at.fhv.spring.di.bestPractices.autowired.controllers.FieldController;
 import at.fhv.spring.di.bestPractices.autowired.controllers.SetterController;
-import org.apache.catalina.core.ApplicationContext;
+import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedConstructorController;
+import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedSetterController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SpringBootTest
 class ApplicationTests {
@@ -30,15 +31,14 @@ class ApplicationTests {
         System.out.println("Setter Controller says: " + setterController.saySomething());
     }
 
+    @Test
+    void testWithNonAutoWiredController() {
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+        XMLBasedConstructorController ctrl = ctx.getBean("XMLBasedConstructorController", XMLBasedConstructorController.class);
+        XMLBasedSetterController setterController = ctx.getBean("XMLBasedSetterController", XMLBasedSetterController.class);
+        System.out.println("Constructor Controller says: " + ctrl.doSomething());
+        System.out.println("Setter Controller says: " + setterController.doSomething());
 
+    }
 
-
-//    @Test
-//    public void testWithConfiguration() {
-//        ApplicationContext ctx = new FileSystemXmlApplicationContext("beans.xml");
-//        at.fhv.spring.di.bestPractices.nonAutowired.controllers.SetterController _setterController2 =
-//                (at.fhv.spring.di.bestPractices.nonAutowired.controllers.SetterController) ctx.getBean("SetterController");
-//        System.out.println("Setter Controller says: " + setterController.saySomething());
-//
-//    }
 }
