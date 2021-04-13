@@ -26,30 +26,32 @@ class ApplicationTests {
 
     @Test
     void testAutoWiredControllers() {
+        System.out.println("Test with AutoWired Components:\n");
+
         System.out.println("Field Controller says: " + fieldController.saySomething());
-
         System.out.println("Constructor Controller says: " + constructorController.saySomething());
-
         System.out.println("Setter Controller says: " + setterController.saySomething());
     }
 
     @Test
     void testWithXMLConfigFile() {
+        System.out.println("Test with XML config file: \n");
+
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
         XMLBasedConstructorController ctrl = ctx.getBean("XMLBasedConstructorController", XMLBasedConstructorController.class);
         XMLBasedSetterController setterController = ctx.getBean("XMLBasedSetterController", XMLBasedSetterController.class);
-        System.out.println("Constructor Controller says: " + ctrl.doSomething());
-        System.out.println("Setter Controller says: " + setterController.doSomething());
-
+        System.out.println("Constructor Controller says: " + ctrl.saySomething());
+        System.out.println("Setter Controller says: " + setterController.saySomething());
     }
 
     @Test
     void testWithJavaConfigClass() {
+        System.out.println("Test with java config file:\n");
+
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         XMLBasedConstructorController ctrl = (XMLBasedConstructorController) ctx.getBean("XMLBasedConstructorController");
         XMLBasedSetterController setterController = (XMLBasedSetterController) ctx.getBean("XMLBasedSetterController");
-        System.out.println("Constructor Controller says: " + ctrl.doSomething());
-        System.out.println("Setter Controller says: " + setterController.doSomething());
+        System.out.println("Constructor Controller says: " + ctrl.saySomething());
+        System.out.println("Setter Controller says: " + setterController.saySomething());
     }
-
 }

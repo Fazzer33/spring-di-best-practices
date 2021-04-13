@@ -6,7 +6,7 @@ import at.fhv.spring.di.bestPractices.beans.MyService;
 //https://www.baeldung.com/spring-xml-injection
 
 /**
- * Example of a controller that gets injected (setter injection) via beans.xml or java config file
+ * Example of a controller that injects the service via a setter (using beans.xml or java config file)
  */
 
 public class XMLBasedSetterController {
@@ -16,7 +16,7 @@ public class XMLBasedSetterController {
         _service = service;
     }
 
-    public String doSomething() {
+    public String saySomething() {
         return _service.getMessage();
     }
 }
