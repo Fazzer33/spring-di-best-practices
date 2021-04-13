@@ -8,6 +8,8 @@ import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedSetterCon
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SpringBootTest
@@ -32,13 +34,22 @@ class ApplicationTests {
     }
 
     @Test
-    void testWithNonAutoWiredController() {
+    void testWithXMLConfigFile() {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
         XMLBasedConstructorController ctrl = ctx.getBean("XMLBasedConstructorController", XMLBasedConstructorController.class);
         XMLBasedSetterController setterController = ctx.getBean("XMLBasedSetterController", XMLBasedSetterController.class);
         System.out.println("Constructor Controller says: " + ctrl.doSomething());
         System.out.println("Setter Controller says: " + setterController.doSomething());
 
+    }
+
+    @Test
+    void testWithJavaConfigClass() {
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+        XMLBasedConstructorController ctrl = (XMLBasedConstructorController) ctx.getBean("XMLBasedConstructorController");
+        XMLBasedSetterController setterController = (XMLBasedSetterController) ctx.getBean("XMLBasedSetterController");
+        System.out.println("Constructor Controller says: " + ctrl.doSomething());
+        System.out.println("Setter Controller says: " + setterController.doSomething());
     }
 
 }

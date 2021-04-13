@@ -4,6 +4,10 @@ import at.fhv.spring.di.bestPractices.beans.IService;
 
 //https://www.baeldung.com/spring-xml-injection
 
+/**
+ * Example of a controller that gets injected (constructor injection) via beans.xml or java config file
+ */
+
 public class XMLBasedConstructorController {
     private IService _service;
 

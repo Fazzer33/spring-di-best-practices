@@ -3,7 +3,11 @@ package at.fhv.spring.di.bestPractices.nonAutowired.controllers;
 import at.fhv.spring.di.bestPractices.beans.IService;
 import at.fhv.spring.di.bestPractices.beans.MyService;
 
-////https://www.baeldung.com/spring-xml-injection
+//https://www.baeldung.com/spring-xml-injection
+
+/**
+ * Example of a controller that gets injected (setter injection) via beans.xml or java config file
+ */
 
 public class XMLBasedSetterController {
     private IService _service;
