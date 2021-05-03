@@ -3,6 +3,7 @@ package at.fhv.spring.di.bestPractices;
 import at.fhv.spring.di.bestPractices.autowired.controllers.ConstructorController;
 import at.fhv.spring.di.bestPractices.autowired.controllers.FieldController;
 import at.fhv.spring.di.bestPractices.autowired.controllers.SetterController;
+import at.fhv.spring.di.bestPractices.carExample.Car;
 import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedConstructorController;
 import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedSetterController;
 import org.junit.jupiter.api.Test;
@@ -53,5 +54,15 @@ class ApplicationTests {
         XMLBasedSetterController setterController = (XMLBasedSetterController) ctx.getBean("XMLBasedSetterController");
         System.out.println("Constructor Controller says: " + ctrl.saySomething());
         System.out.println("Setter Controller says: " + setterController.saySomething());
+    }
+
+    @Test
+    void testCar() {
+        System.out.println("Test for the car example \n");
+
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+        Car ctrl = (Car) ctx.getBean("Car", Car.class);
+
+        ctrl.startCar();
     }
 }

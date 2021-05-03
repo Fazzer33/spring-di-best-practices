@@ -6,6 +6,7 @@
                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <bean id="MyService" class="at.fhv.spring.di.bestPractices.beans.MyService"></bean>
+    <bean id="Engine" class="at.fhv.spring.di.bestPractices.carExample.Engine"></bean>
 
     <bean id="XMLBasedConstructorController" class="at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedConstructorController">
         <constructor-arg ref="MyService"></constructor-arg>
@@ -13,5 +14,11 @@
     <bean id="XMLBasedSetterController" class="at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedSetterController">
         <property name="service" ref="MyService"/>
     </bean>
+
+    <bean id="Car" class="at.fhv.spring.di.bestPractices.carExample.Car">
+        <property name="engine" ref="Engine"/>
+    </bean>
+
+
 </beans>
 
