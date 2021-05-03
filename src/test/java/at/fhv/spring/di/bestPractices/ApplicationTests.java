@@ -3,7 +3,7 @@ package at.fhv.spring.di.bestPractices;
 import at.fhv.spring.di.bestPractices.autowired.controllers.ConstructorController;
 import at.fhv.spring.di.bestPractices.autowired.controllers.FieldController;
 import at.fhv.spring.di.bestPractices.autowired.controllers.SetterController;
-import at.fhv.spring.di.bestPractices.carExample.Car;
+import at.fhv.spring.di.bestPractices.carExample.*;
 import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedConstructorController;
 import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedSetterController;
 import org.junit.jupiter.api.Test;
@@ -58,11 +58,22 @@ class ApplicationTests {
 
     @Test
     void testCar() {
-        System.out.println("Test for the car example \n");
+        System.out.println("Test for the car example: \n");
 
+        // Initialize with XML Config which injects engine to car.
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-        Car ctrl = (Car) ctx.getBean("Car", Car.class);
+        Car car = (Car) ctx.getBean("Car", Car.class);
 
-        ctrl.startCar();
+        car.startCar();
+        car.stopCar();
+
+        IEngine engine2 = new DieselEngine();
+        IBrakes brakes2 = new DiscBrakes();
+
+        System.out.println("\n Change Engine and Brakes. \n");
+        car.setEngine(engine2);
+        car.setBrakes(brakes2);
+        car.startCar();
+        car.stopCar();
     }
 }
