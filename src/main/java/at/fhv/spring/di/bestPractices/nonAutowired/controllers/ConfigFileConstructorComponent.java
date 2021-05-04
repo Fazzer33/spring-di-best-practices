@@ -8,10 +8,10 @@ import at.fhv.spring.di.bestPractices.beans.IService;
  * Example of a controller that injects the service via the constructor (using beans.xml or java config file)
  */
 
-public class XMLBasedConstructorController {
+public class ConfigFileConstructorComponent {
     private IService _service;
 
-    public XMLBasedConstructorController(IService service) {
+    public ConfigFileConstructorComponent(IService service) {
         _service = service;
     }
 

@@ -1,8 +1,8 @@
 package at.fhv.spring.di.bestPractices;
 
 import at.fhv.spring.di.bestPractices.beans.MyService;
-import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedConstructorController;
-import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedSetterController;
+import at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileConstructorComponent;
+import at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileSetterComponent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,16 +14,16 @@ public class AppConfig {
         return new MyService();
     }
 
-    @Bean("XMLBasedConstructorController")
-    public XMLBasedConstructorController getController() {
-        return new XMLBasedConstructorController(new MyService());
+    @Bean("ConfigFileConstructorComponent")
+    public ConfigFileConstructorComponent getComponent() {
+        return new ConfigFileConstructorComponent(new MyService());
     }
 
-    @Bean("XMLBasedSetterController")
-    public XMLBasedSetterController getSetterController() {
-        XMLBasedSetterController xmlBasedSetterController = new XMLBasedSetterController();
-        xmlBasedSetterController.setService(new MyService());
-        return xmlBasedSetterController;
+    @Bean("ConfigFileSetterComponent")
+    public ConfigFileSetterComponent getSetterComponent() {
+        ConfigFileSetterComponent configFileSetterComponent = new ConfigFileSetterComponent();
+        configFileSetterComponent.setService(new MyService());
+        return configFileSetterComponent;
     }
 
 }

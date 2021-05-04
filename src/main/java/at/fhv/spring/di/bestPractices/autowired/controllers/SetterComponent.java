@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
  * Example of a SetterController which injects the service through a set method
  */
 @Controller
-public class SetterController {
+public class SetterComponent {
     private MyService _myService;
 
     @Autowired

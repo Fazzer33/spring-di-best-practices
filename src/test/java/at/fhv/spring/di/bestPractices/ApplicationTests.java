@@ -1,11 +1,11 @@
 package at.fhv.spring.di.bestPractices;
 
-import at.fhv.spring.di.bestPractices.autowired.controllers.ConstructorController;
-import at.fhv.spring.di.bestPractices.autowired.controllers.FieldController;
-import at.fhv.spring.di.bestPractices.autowired.controllers.SetterController;
+import at.fhv.spring.di.bestPractices.autowired.controllers.ConstructorComponent;
+import at.fhv.spring.di.bestPractices.autowired.controllers.FieldComponent;
+import at.fhv.spring.di.bestPractices.autowired.controllers.SetterComponent;
 import at.fhv.spring.di.bestPractices.carExample.*;
-import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedConstructorController;
-import at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedSetterController;
+import at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileConstructorComponent;
+import at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileSetterComponent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,32 +17,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 class ApplicationTests {
 
     @Autowired
-    FieldController fieldController;
+    FieldComponent fieldComponent;
 
     @Autowired
-    ConstructorController constructorController;
+    ConstructorComponent constructorComponent;
 
     @Autowired
-    SetterController setterController;
+    SetterComponent setterComponent;
 
     @Test
     void testAutoWiredControllers() {
         System.out.println("Test with AutoWired Components:\n");
 
-        System.out.println("Field Controller says: " + fieldController.saySomething());
-        System.out.println("Constructor Controller says: " + constructorController.saySomething());
-        System.out.println("Setter Controller says: " + setterController.saySomething());
-    }
-
-    @Test
-    void testWithXMLConfigFile() {
-        System.out.println("Test with XML config file: \n");
-
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-        XMLBasedConstructorController ctrl = ctx.getBean("XMLBasedConstructorController", XMLBasedConstructorController.class);
-        XMLBasedSetterController setterController = ctx.getBean("XMLBasedSetterController", XMLBasedSetterController.class);
-        System.out.println("Constructor Controller says: " + ctrl.saySomething());
-        System.out.println("Setter Controller says: " + setterController.saySomething());
+        System.out.println("Field Component says: " + fieldComponent.saySomething());
+        System.out.println("Constructor Component says: " + constructorComponent.saySomething());
+        System.out.println("Setter Component says: " + setterComponent.saySomething());
     }
 
     @Test
@@ -50,10 +39,21 @@ class ApplicationTests {
         System.out.println("Test with java config file:\n");
 
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        XMLBasedConstructorController ctrl = (XMLBasedConstructorController) ctx.getBean("XMLBasedConstructorController");
-        XMLBasedSetterController setterController = (XMLBasedSetterController) ctx.getBean("XMLBasedSetterController");
-        System.out.println("Constructor Controller says: " + ctrl.saySomething());
-        System.out.println("Setter Controller says: " + setterController.saySomething());
+        ConfigFileConstructorComponent component = (ConfigFileConstructorComponent) ctx.getBean("ConfigFileConstructorComponent");
+        ConfigFileSetterComponent setterComponent = (ConfigFileSetterComponent) ctx.getBean("ConfigFileSetterComponent");
+        System.out.println("Constructor Component says: " + component.saySomething());
+        System.out.println("Setter Component says: " + setterComponent.saySomething());
+    }
+
+    @Test
+    void testWithXMLConfigFile() {
+        System.out.println("Test with XML config file: \n");
+
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+        ConfigFileConstructorComponent component = ctx.getBean("ConfigFileConstructorComponent", ConfigFileConstructorComponent.class);
+        ConfigFileSetterComponent setterController = ctx.getBean("ConfigFileSetterComponent", ConfigFileSetterComponent.class);
+        System.out.println("Constructor Component says: " + component.saySomething());
+        System.out.println("Setter Component says: " + setterController.saySomething());
     }
 
     @Test
@@ -62,7 +62,7 @@ class ApplicationTests {
 
         // Initialize with XML Config which injects engine to car.
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-        Car car = (Car) ctx.getBean("Car", Car.class);
+        Car car = ctx.getBean("Car", Car.class);
 
         car.startCar();
         car.stopCar();
@@ -70,7 +70,7 @@ class ApplicationTests {
         IEngine engine2 = new DieselEngine();
         IBrakes brakes2 = new DiscBrakes();
 
-        System.out.println("\n Change Engine and Brakes. \n");
+        System.out.println("\nChange Engine and Brakes. \n");
         car.setEngine(engine2);
         car.setBrakes(brakes2);
         car.startCar();

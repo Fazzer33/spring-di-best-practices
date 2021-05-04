@@ -9,7 +9,7 @@ import at.fhv.spring.di.bestPractices.beans.MyService;
  * Example of a controller that injects the service via a setter (using beans.xml or java config file)
  */
 
-public class XMLBasedSetterController {
+public class ConfigFileSetterComponent {
     private IService _service;
 
     public void setService(MyService service) {

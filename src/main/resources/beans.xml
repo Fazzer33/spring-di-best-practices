@@ -5,28 +5,32 @@
         xsi:schemaLocation="http://www.springframework.org/schema/beans
                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="MyService" class="at.fhv.spring.di.bestPractices.beans.MyService"></bean>
+    <!-- Car Example-->
     <bean id="PetrolEngine" class="at.fhv.spring.di.bestPractices.carExample.PetrolEngine"></bean>
     <bean id="DrumBrakes" class="at.fhv.spring.di.bestPractices.carExample.DrumBrakes"></bean>
 
-
-    <bean id="XMLBasedConstructorController" class="at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedConstructorController">
-        <constructor-arg ref="MyService"></constructor-arg>
-    </bean>    
-    <bean id="XMLBasedSetterController" class="at.fhv.spring.di.bestPractices.nonAutowired.controllers.XMLBasedSetterController">
-        <property name="service" ref="MyService"/>
-    </bean>
-
-<!--    <bean id="Car" class="at.fhv.spring.di.bestPractices.carExample.Car">-->
-<!--        <property name="engine" ref="PetrolEngine"/>-->
-<!--        <property name="brakes" ref="DrumBrakes"/>-->
-<!--    </bean>-->
-
+    <!-- Constructor DI-->
     <bean id="Car" class="at.fhv.spring.di.bestPractices.carExample.Car">
         <constructor-arg ref="DrumBrakes"></constructor-arg>
         <constructor-arg ref="PetrolEngine"></constructor-arg>
     </bean>
 
+    <!-- Setter DI-->
+    <!--    <bean id="Car" class="at.fhv.spring.di.bestPractices.carExample.Car">-->
+    <!--        <property name="engine" ref="PetrolEngine"/>-->
+    <!--        <property name="brakes" ref="DrumBrakes"/>-->
+    <!--    </bean>-->
+
+
+    <!-- General example -->
+    <bean id="MyService" class="at.fhv.spring.di.bestPractices.beans.MyService"></bean>
+
+    <bean id="ConfigFileConstructorComponent" class="at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileConstructorComponent">
+        <constructor-arg ref="MyService"></constructor-arg>
+    </bean>    
+    <bean id="ConfigFileSetterComponent" class="at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileSetterComponent">
+        <property name="service" ref="MyService"/>
+    </bean>
 
 </beans>
 

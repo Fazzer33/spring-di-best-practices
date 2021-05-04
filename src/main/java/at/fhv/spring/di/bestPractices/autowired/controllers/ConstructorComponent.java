@@ -1,19 +1,17 @@
 package at.fhv.spring.di.bestPractices.autowired.controllers;
 
 import at.fhv.spring.di.bestPractices.beans.MyService;
-import org.springframework.stereotype.Controller;
-
-// https://www.youtube.com/watch?v=uO2_ZzIIV70
+import org.springframework.stereotype.Component;
 
 /**
- * Example of a ConstructorController which injects the service through the constructer parameters.
+ * Example of a ConstructorController which injects the service through the constructor parameters.
  */
-@Controller
-public class ConstructorController {
+@Component
+public class ConstructorComponent {
     private MyService _myService;
 
     // no AutoWired is needed in this case (optional) -> Spring automatically does this
-    public ConstructorController(MyService myService) {
+    public ConstructorComponent(MyService myService) {
         _myService = myService;
     }
 
