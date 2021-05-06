@@ -25,10 +25,10 @@
     <!-- General example -->
     <bean id="MyService" class="at.fhv.spring.di.bestPractices.beans.MyService"></bean>
 
-    <bean id="ConfigFileConstructorComponent" class="at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileConstructorComponent">
+    <bean id="ConfigFileConstructorComponent" class="at.fhv.spring.di.bestPractices.nonAutowired.components.ConfigFileConstructorComponent">
         <constructor-arg ref="MyService"></constructor-arg>
     </bean>    
-    <bean id="ConfigFileSetterComponent" class="at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileSetterComponent">
+    <bean id="ConfigFileSetterComponent" class="at.fhv.spring.di.bestPractices.nonAutowired.components.ConfigFileSetterComponent">
         <property name="service" ref="MyService"/>
     </bean>
 

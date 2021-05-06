@@ -1,6 +1,6 @@
-package at.fhv.spring.di.bestPractices.autowired.controllers;
+package at.fhv.spring.di.bestPractices.autowired.components;
 
-import at.fhv.spring.di.bestPractices.beans.MyService;
+import at.fhv.spring.di.bestPractices.beans.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class SetterComponent {
-    private MyService _myService;
+    private IService _myService;
 
     @Autowired
-    public void setMyService(MyService myService) {
+    public void setMyService(IService myService) {
         _myService = myService;
     }
 

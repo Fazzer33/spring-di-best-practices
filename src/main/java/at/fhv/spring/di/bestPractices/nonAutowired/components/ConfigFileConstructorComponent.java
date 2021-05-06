@@ -1,4 +1,4 @@
-package at.fhv.spring.di.bestPractices.nonAutowired.controllers;
+package at.fhv.spring.di.bestPractices.nonAutowired.components;
 
 import at.fhv.spring.di.bestPractices.beans.IService;
 

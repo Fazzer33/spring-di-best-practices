@@ -1,8 +1,8 @@
 package at.fhv.spring.di.bestPractices;
 
 import at.fhv.spring.di.bestPractices.beans.MyService;
-import at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileConstructorComponent;
-import at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileSetterComponent;
+import at.fhv.spring.di.bestPractices.nonAutowired.components.ConfigFileConstructorComponent;
+import at.fhv.spring.di.bestPractices.nonAutowired.components.ConfigFileSetterComponent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

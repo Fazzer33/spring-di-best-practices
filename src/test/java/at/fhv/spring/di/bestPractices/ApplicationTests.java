@@ -1,11 +1,11 @@
 package at.fhv.spring.di.bestPractices;
 
-import at.fhv.spring.di.bestPractices.autowired.controllers.ConstructorComponent;
-import at.fhv.spring.di.bestPractices.autowired.controllers.FieldComponent;
-import at.fhv.spring.di.bestPractices.autowired.controllers.SetterComponent;
+import at.fhv.spring.di.bestPractices.autowired.components.ConstructorComponent;
+import at.fhv.spring.di.bestPractices.autowired.components.FieldComponent;
+import at.fhv.spring.di.bestPractices.autowired.components.SetterComponent;
 import at.fhv.spring.di.bestPractices.carExample.*;
-import at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileConstructorComponent;
-import at.fhv.spring.di.bestPractices.nonAutowired.controllers.ConfigFileSetterComponent;
+import at.fhv.spring.di.bestPractices.nonAutowired.components.ConfigFileConstructorComponent;
+import at.fhv.spring.di.bestPractices.nonAutowired.components.ConfigFileSetterComponent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +26,7 @@ class ApplicationTests {
     SetterComponent setterComponent;
 
     @Test
-    void testAutoWiredControllers() {
+    void testAutoWiredComponents() {
         System.out.println("Test with AutoWired Components:\n");
 
         System.out.println("Field Component says: " + fieldComponent.saySomething());
@@ -51,9 +51,9 @@ class ApplicationTests {
 
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
         ConfigFileConstructorComponent component = ctx.getBean("ConfigFileConstructorComponent", ConfigFileConstructorComponent.class);
-        ConfigFileSetterComponent setterController = ctx.getBean("ConfigFileSetterComponent", ConfigFileSetterComponent.class);
+        ConfigFileSetterComponent setterComponent = ctx.getBean("ConfigFileSetterComponent", ConfigFileSetterComponent.class);
         System.out.println("Constructor Component says: " + component.saySomething());
-        System.out.println("Setter Component says: " + setterController.saySomething());
+        System.out.println("Setter Component says: " + setterComponent.saySomething());
     }
 
     @Test

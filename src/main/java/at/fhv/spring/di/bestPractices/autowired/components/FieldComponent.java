@@ -1,6 +1,6 @@
-package at.fhv.spring.di.bestPractices.autowired.controllers;
+package at.fhv.spring.di.bestPractices.autowired.components;
 
-import at.fhv.spring.di.bestPractices.beans.MyService;
+import at.fhv.spring.di.bestPractices.beans.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ public class FieldComponent {
 
     // field injection is not recommended
     @Autowired
-    private MyService myService;
+    private IService myService;
 
     public String saySomething() {
         return myService.getMessage();
